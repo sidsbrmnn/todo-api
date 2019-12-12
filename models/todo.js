@@ -1,13 +1,14 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const Todo = mongoose.model(
+const Todo = model(
     'todo',
-    new mongoose.Schema({
+    new Schema({
         text: { type: String, required: true, trim: true },
         completed: { type: Boolean, default: false },
         completedAt: { type: Date, default: null },
         _creator: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
+            ref: 'user',
             required: true
         }
     })
